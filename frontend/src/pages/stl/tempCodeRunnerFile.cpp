@@ -1,0 +1,1 @@
+ // cout<<binary_search(ans.begin(), ans.end(), 113)<<endl;

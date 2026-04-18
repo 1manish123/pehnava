@@ -18,13 +18,15 @@ const SearchBar = () => {
         }
     },[location])
     
-  return showSearch && visible ? (
-    <div className='border-t border-b bg-gray-50 text-center'>
-      <div className='inline-flex items-center justify-center border border-gray-400 px-5 py-2 my-5 mx-3 rounded-full w-3/4 sm:w-1/2'>
-        <input value={search} onChange={(e)=>setSearch(e.target.value)} className='flex-1 outline-none bg-inherit text-sm' type="text" placeholder='Search'/>
-        <img className='w-4' src={assets.search_icon} alt="" />
+  return (showSearch && visible) ? (
+    <div className='border-b bg-gray-50/80 backdrop-blur-sm text-center shadow-sm relative z-40 w-[100vw] ml-[calc(50%-50vw)] overflow-hidden'>
+      <div className='inline-flex items-center justify-center border border-gray-200 px-6 py-3 my-4 mx-3 rounded-md w-full sm:w-1/2 bg-white focus-within:ring-1 focus-within:ring-black transition-all shadow-sm'>
+        <input value={search} onChange={(e)=>setSearch(e.target.value)} className='flex-1 outline-none bg-transparent text-sm font-medium text-gray-800 placeholder-gray-400' type="text" placeholder='Search for collections, products, or types...'/>
+        <img className='w-4 ml-4 opacity-50 cursor-text' src={assets.search_icon} alt="Search" />
       </div>
-      <img onClick={()=>setShowSearch(false)} className='inline w-3 cursor-pointer' src={assets.cross_icon} alt="" />
+      <button onClick={()=>setShowSearch(false)} className='inline-flex items-center justify-center w-8 h-8 rounded-full hover:bg-gray-200 transition-colors ml-2'>
+        <img className='w-3 opacity-60' src={assets.cross_icon} alt="Close" />
+      </button>
     </div>
   ) : null
 }
