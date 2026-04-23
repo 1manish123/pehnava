@@ -53,37 +53,27 @@ const Collection = () => {
       productsCopy = productsCopy.filter(item => subCategory.includes(item.subCategory))
     }
 
-    setFilterProducts(productsCopy)
-
-  }
-
-  const sortProduct = () => {
-
-    let fpCopy = filterProducts.slice();
-
+    // Apply sort immediately on the filtered copy
     switch (sortType) {
       case 'low-high':
-        setFilterProducts(fpCopy.sort((a,b)=>(a.price - b.price)));
+        productsCopy.sort((a,b)=>(a.price - b.price));
         break;
 
       case 'high-low':
-        setFilterProducts(fpCopy.sort((a,b)=>(b.price - a.price)));
+        productsCopy.sort((a,b)=>(b.price - a.price));
         break;
 
       default:
-        applyFilter();
         break;
     }
+
+    setFilterProducts(productsCopy)
 
   }
 
   useEffect(()=>{
       applyFilter();
-  },[category,subCategory,search,showSearch,products])
-
-  useEffect(()=>{
-    sortProduct();
-  },[sortType])
+  },[category,subCategory,search,showSearch,products,sortType])
 
   return (
     <div className='flex flex-col sm:flex-row gap-6 sm:gap-14 pt-10 border-t min-h-screen'>
